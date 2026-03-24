@@ -1,9 +1,8 @@
-import matplotlib.pyplot as plt #basic visualisation
-import pandas as pd #pandas 
+import matplotlib.pyplot as plt  # basic visualisation
+import pandas as pd  # pandas
 import pyarrow.parquet as pq
-import pyarrow as pa #as online files are stored in parquet, pyarrow is used to bypass need to import native requests and csv libraries
+import pyarrow as pa  # as online files are stored in parquet, pyarrow is used to bypass need to import native requests and csv libraries
 import numpy as np
-
 BLOOD_DATA = "https://storage.data.gov.my/healthcare/blood_donations.parquet"
 BLOOD_STATE_DATA = (
     "https://storage.data.gov.my/healthcare/blood_donations_state.parquet"
@@ -21,3 +20,4 @@ df_organ_pledges = pd.read_parquet(ORGAN_PLEDGES)
 df_organ_pledges_state = pd.read_parquet(ORGAN_PLEDGES_STATE)
 df_funding = pd.read_parquet(FUNDING)
 print("Successful testing!")
+

@@ -2,6 +2,9 @@ import streamlit as st
 import pandas as pd
 from sklearn import datasets
 from sklearn.ensemble import RandomForestClassifier
+from dataloader import load_project_data
+
+st.title("Trend_Prediction")
 
 # 1. App Configuration
 st.set_page_config(page_title="Iris Species Predictor", page_icon="🌱")

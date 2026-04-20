@@ -1,19 +1,17 @@
-import plotly.express as px
+import os
 import seaborn as sns
+import plotly.express as px
 import streamlit as st
 from dataloader import load_project_data
 
 
-def load_data():
-    # Loading from seaborn's built-in datasets
-    df = sns.load_dataset("iris")
-    return df
+path = "../project_dashboard/datasets"
+if os.path.exists(path):
+    df = load_project_data(path)
 
 
 def run_vis_page():
     st.title("KKM Data Visualization")
-    df = load_data()
-
     # --- Sidebar Filters ---
     st.sidebar.header("Visualization Settings")
 
@@ -22,14 +20,17 @@ def run_vis_page():
         (
             "Scatter Plot",
             "Distribution (Histogram)",
-            "Violin Plot",
             "Bar Plot",
             "Line Plot",
             "Box Plot",
         ),
     )
+    dataset_name = st.sidebar.selectbox("Select Dataset", options=list(df.keys()))
 
-    features = df.columns[:-1].tolist()
+    vis_df = df[dataset_name]
+
+    # 4. Now you can safely access .columns because 'df' is a DataFrame
+    features = vis_df.columns.tolist()
 
     # --- Main Visualization Logic ---
     if chart_type == "Scatter Plot":
@@ -41,12 +42,9 @@ def run_vis_page():
             y_axis = st.selectbox("Y-Axis", features, index=1)
 
         fig = px.scatter(
-            df,
+            vis_df,
             x=x_axis,
             y=y_axis,
-            color="species",
-            symbol="species",
-            hover_name="species",
             template="plotly_white",
         )
         st.plotly_chart(fig, use_container_width=True)
@@ -56,77 +54,62 @@ def run_vis_page():
         selected_feature = st.selectbox("Select Feature", features)
 
         fig = px.histogram(
-            df,
+            vis_df,
             x=selected_feature,
-            color="species",
             marginal="box",  # Adds a boxplot on top
             barmode="overlay",
             template="plotly_white",
         )
         st.plotly_chart(fig, use_container_width=True)
 
-    elif chart_type == "Violin Plot":
-        st.subheader("Feature Density by Species")
-        selected_feature = st.selectbox("Select Feature", features)
-
-        fig = px.violin(
-            df,
-            y=selected_feature,
-            x="species",
-            color="species",
-            box=True,
-            points="all",
-            template="plotly_white",
-        )
-        st.plotly_chart(fig, use_container_width=True)
-
     elif chart_type == "Bar Plot":
-        st.subheader("Feature Density by Species")
-        selected_feature = st.selectbox("Select Feature", features)
+        col1, col2 = st.columns(2)
+        with col1:
+            x_axis = st.selectbox("X-Axis", features, index=0)
+        with col2:
+            y_axis = st.selectbox("Y-Axis", features, index=1)
 
-        fig = px.violin(
-            df,
-            y=selected_feature,
-            x="species",
-            color="species",
-            box=True,
-            points="all",
+        fig = px.bar(
+            vis_df,
+            y=y_axis,
+            x=x_axis,
             template="plotly_white",
         )
         st.plotly_chart(fig, use_container_width=True)
     elif chart_type == "Line Plot":
-        st.subheader("Feature Density by Species")
         selected_feature = st.selectbox("Select Feature", features)
+        col1, col2 = st.columns(2)
+        with col1:
+            x_axis = st.selectbox("X-Axis", features, index=0)
+        with col2:
+            y_axis = st.selectbox("Y-Axis", features, index=1)
 
-        fig = px.violin(
-            df,
-            y=selected_feature,
-            x="species",
-            color="species",
-            box=True,
-            points="all",
+        fig = px.line(
+            vis_df,
+            x=x_axis,
+            y=y_axis,
             template="plotly_white",
         )
         st.plotly_chart(fig, use_container_width=True)
 
     elif chart_type == "Box Plot":
-        st.subheader("Feature Density by Species")
-        selected_feature = st.selectbox("Select Feature", features)
+        col1, col2 = st.columns(2)
+        with col1:
+            x_axis = st.selectbox("X-Axis", features, index=0)
+        with col2:
+            y_axis = st.selectbox("Y-Axis", features, index=1)
 
-        fig = px.violin(
-            df,
-            y=selected_feature,
-            x="species",
-            color="species",
-            box=True,
-            points="all",
+        fig = px.box(
+            vis_df,
+            y=y_axis,
+            x=x_axis,
             template="plotly_white",
         )
         st.plotly_chart(fig, use_container_width=True)
 
     # --- Summary Statistics ---
     with st.expander("View Raw Data & Summary Stats"):
-        st.dataframe(df.describe(), use_container_width=True)
+        st.dataframe(vis_df.describe(), use_container_width=True)
         st.write("Full Dataset:", df)
 
 

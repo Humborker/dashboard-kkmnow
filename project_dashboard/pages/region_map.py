@@ -1,29 +1,70 @@
 import streamlit as st
+import plotly.express as px
 from dataloader import load_project_data
+import geopandas as gd
 import pandas as pd
+import os
+
+# TODO: geopandas (mapping tool)
+
+path = "../project_dashboard/datasets"
+if os.path.exists(path):
+    map_df = load_project_data(path)
+
 
 st.title("Region Map")
 
 
-def assign_region(row, center_lat, center_long):
-    """Assigns a compass direction based on relative coordinates."""
-    n_s = "North" if row["lat"] >= center_lat else "South"
-    e_w = "East" if row["lon"] >= center_long else "West"
+def get_geo_type(df):
+    """Detects which geographic columns are available."""
+    cols = df.columns.tolist()
+    if "Direction" in cols:
+        return "compass"
+    elif "Country" in cols or "State" in cols:
+        return "name_based"
+    else:
+        return "non_geo"
 
-    return f"{n_s}-{e_w}"
 
+# Inside your Streamlit app:
+selected_key = st.sidebar.selectbox("Select Dataset", list(map_df.keys()))
+df = map_df[selected_key]
 
-# Example Data
-data = {
-    "Country": ["Norway", "South Africa", "Japan", "Brazil"],
-    "lat": [60.47, -30.55, 36.20, -14.23],
-    "lon": [8.46, 22.93, 138.25, -51.92],
+geo_status = get_geo_type(df)
+
+if geo_status == "compass":
+    fig = px.box(df, x="Direction", y="Value", color="Direction")
+    st.plotly_chart(fig)
+# Compass Map (To be filled.)
+COMPASS_MAP = {
+    #    "Canada": "North",
+    #    "USA": "North",
+    #    "Brazil": "South",
+    #    "Australia": "South",
 }
 
-df = pd.DataFrame(data)
+if geo_status == "name_based":
+    # Create the column on the fly
+    target_col = "Country" if "Country" in df.columns else "State"
+    df["Direction"] = df[target_col].map(COMPASS_MAP).fillna("Unknown")
 
-# Define "Center" (e.g., Near the Prime Meridian/Equator intersection)
-CENTER_LAT, CENTER_LON = 0, 0
+    fig = px.scatter(df, x="Direction", y="Value", hover_name=target_col)
+    st.plotly_chart(fig)
 
-# Apply mapping
-df["Region"] = df.apply(assign_region, axis=1, args=(CENTER_LAT, CENTER_LON))
+if geo_status == "non_geo":
+    st.warning("This dataset does not contain regional mapping data.")
+    # Fallback to a standard line plot or table
+    st.line_chart(df)
+
+tab1, tab2 = st.tabs(["Visualization", "Raw Data"])
+
+with tab1:
+    if geo_status != "non_geo":
+        st.subheader(f"Regional Analysis: {selected_key}")
+        # Your Plotly logic here
+    else:
+        st.info("General Trend Analysis (Non-Regional)")
+        # General plot
+
+with tab2:
+    st.dataframe(df)

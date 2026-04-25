@@ -8,7 +8,11 @@ import os
 
 # TODO: Hit 80% using scikit machine learning (LOL function)
 # TODO: Use deep learning.
-# TODO:
+# TODO: Use simple scikit machine learning sklearn
+path = "../project_dashboard/datasets"
+if os.path.exists(path):
+    map_df = load_project_data(path)
+
 st.title("Trend_Prediction")
 
 # 1. App Configuration

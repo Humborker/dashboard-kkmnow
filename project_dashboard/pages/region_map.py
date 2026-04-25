@@ -4,69 +4,51 @@ from dataloader import load_project_data
 import geopandas as gd
 import pandas as pd
 import os
+import json
 
-# DONE: geopandas (mapping tool)
-# TODO: resolve massive fucking latency issues
+# Set up paths
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 path = "../project_dashboard/datasets"
 map_path = os.path.join(BASE_DIR, "..", "map_data", "malaysia.json")
-# map_path = "../map_data/malaysia.geojson"
-if os.path.exists(path):
-    map_df = load_project_data(path)
 
-
-st.title("Region Map")
-
-# 2. Load the Spatial Data (GeoJSON/Shapefile)
+# 1. Load GeoJSON as a DICTIONARY (much faster than GDF)
 
 
 @st.cache_data
-def load_geo():
-    # Ensure this file exists in your project directory
-    gdf = gd.read_file(map_path)
-    return gdf
+def load_geojson_data():
+    with open(map_path, "r") as f:
+        return json.load(f)
 
 
-gdf_states = load_geo()
-gdf_states = gdf_states.drop(columns=["source", "id"])
-gdf_states["geometry"] = gdf_states["geometry"].simplify(
-    tolerance=0.01, preserve_topology=True
-)
-print(gdf_states.columns.unique())
+# 2. Load CSV Data
+if os.path.exists(path):
+    map_df = load_project_data(path)
+
+malaysia_geojson = load_geojson_data()
 
 
 def run_map_page():
     st.sidebar.header("Map Configuration")
 
-    # Choose which CSV from the dictionary
     selected_dataset = st.sidebar.selectbox(
         "Select Dataset", options=list(map_df.keys())
     )
-
-    # Get the specific DataFrame from the dictionary
     active_df = map_df[selected_dataset]
 
-    # Choose which column from that CSV to visualize
     metric_to_plot = st.sidebar.selectbox(
         "Select Metric", options=active_df.select_dtypes(include=["number"]).columns
     )
 
-    # 4. Merging Logic
-    # We merge the GeoDataFrame with the selected DataFrame from your dictionary
-    # Adjust 'state_name' and 'state' to match your specific file column names
-    merged_data = gdf_states.merge(
-        active_df, left_on="name", right_on="state", how="left"
-    )
-
-    # 5. Rendering the Map
     st.subheader(f"Mapping {selected_dataset}: {metric_to_plot}")
 
+    # 3. Plotly Express Choropleth
+    # We use active_df (Pandas) directly, NOT a merged GeoDataFrame
     fig = px.choropleth(
-        merged_data,
-        geojson=merged_data.geometry,
-        locations=merged_data.index,
+        active_df,
+        geojson=malaysia_geojson,
+        locations="state",  # Column in active_df
+        featureidkey="properties.name",  # Path to the name inside the GeoJSON 'properties'
         color=metric_to_plot,
-        hover_name="state",
         color_continuous_scale="YlOrRd",
         projection="mercator",
     )

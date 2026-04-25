@@ -8,22 +8,32 @@ import os
 from prophet import Prophet
 from prophet.plot import plot_plotly
 
-# TODO: Hit 80% using scikit machine learning (LOL function)
-# TODO:
-# TODO: Use deep learning.
-# TODO:
-path = "../project_dashboard/datasets"
-if os.path.exists(path):
-    map_df = load_project_data(path)
+# TODO: Edit dataframes that are not functioning.
+# path = "../project_dashboard/datasets"
+# if os.path.exists(path):
+#    map_df = load_project_data(path)
+
+
+@st.cache_data
+def get_data():
+    path = "../project_dashboard/datasets"
+    if os.path.exists(path):
+        return load_project_data(path)
+    return None
+
 
 # 1. Load your KKM dictionary dataframe
 
+
 # --- 1. Selection Logic ---
-st.title("📈 KKM Health Forecaster")
+st.title("KKM Health Forecaster")
+st.subheader(" This model uses prophet to do short term forecast based on prior data ")
 
 
 def trend_predictor():
     # Let the user pick which DataFrame from your dictionary to use
+    map_df = get_data()
+
     dataset_key = st.selectbox("1. Choose a Dataset", options=list(map_df.keys()))
     active_df = map_df[dataset_key].copy()
 

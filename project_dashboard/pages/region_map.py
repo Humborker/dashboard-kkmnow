@@ -38,23 +38,41 @@ def run_map_page():
     selected_dataset = st.sidebar.selectbox(
         "Select Dataset", options=list(map_df.keys())
     )
-    active_df = map_df[selected_dataset]
+    active_df = map_df[selected_dataset].copy()
 
-    metric_to_plot = st.sidebar.selectbox(
-        "Select Metric", options=active_df.select_dtypes(include=["number"]).columns
-    )
+    # Get numeric columns for the user to choose from
+    numeric_cols = active_df.select_dtypes(include=["number"]).columns
+    metric_to_plot = st.sidebar.selectbox("Select Metric", options=numeric_cols)
 
-    st.subheader(f"Mapping {selected_dataset}: {metric_to_plot}")
+    # --- NEW: AGGREGATION LOGIC ---
+    # Group by state and calculate the mean
+    # This turns binary [0, 1] into a decimal proportion (e.g., 0.75)
+    map_ready_df = active_df.groupby("state")[metric_to_plot].mean().reset_index()
+
+    # --- NEW: SCALE BINARY VALUES ---
+    # Check if the column is binary (only contains 0 and 1)
+    unique_vals = set(active_df[metric_to_plot].unique())
+    is_binary = unique_vals.issubset({0, 1, 0.0, 1.0})
+
+    if is_binary:
+        # Scale to 0-100 to represent a percentage for the map
+        map_ready_df[metric_to_plot] = map_ready_df[metric_to_plot] * 100
+        label_suffix = "(%)"
+    else:
+        label_suffix = "(Average)"
+
+    st.subheader(f"Mapping {selected_dataset}: {metric_to_plot} {label_suffix}")
 
     # 3. Plotly Express Choropleth
-    # We use active_df (Pandas) directly, NOT a merged GeoDataFrame
     fig = px.choropleth(
-        active_df,
+        map_ready_df,  # Use the aggregated dataframe
         geojson=malaysia_geojson,
-        locations="state",  # Column in active_df
-        featureidkey="properties.name",  # Path to the name inside the GeoJSON 'properties'
+        locations="state",
+        featureidkey="properties.name",
         color=metric_to_plot,
         color_continuous_scale="YlOrRd",
+        # Update labels to reflect if it is a percentage
+        labels={metric_to_plot: f"{metric_to_plot} {label_suffix}"},
         projection="mercator",
     )
 

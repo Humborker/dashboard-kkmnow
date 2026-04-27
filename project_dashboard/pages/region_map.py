@@ -20,9 +20,14 @@ def load_geojson_data():
         return json.load(f)
 
 
+exclude_files = ["metadata.csv", "linelist_deaths.csv"]
 # 2. Load CSV Data
 if os.path.exists(path):
     map_df = load_project_data(path)
+    map_df.pop("blood_donations", None)
+    map_df.pop("infant_immunisation", None)
+    map_df.pop("blood_donations", None)
+
 
 malaysia_geojson = load_geojson_data()
 

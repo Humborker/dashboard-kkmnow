@@ -1,254 +1,1039 @@
-
-# Data Science Capstone Project Requirements
-
-## Overview
-
-The capstone project is a final project where trainees apply data science knowledge, analytical thinking, and technical skills to solve a real-world problem using data.
-
-Trainees are expected to complete the full workflow from problem definition to final presentation and live demonstration of their solution.
-
-The project may involve:
-
-- data analysis
-- machine learning
-- deep learning
-- dashboard development
-- application deployment or prototype demo
-
-## Project Objectives
-
-Trainees must:
-
-Define a real-world problem clearly.
-Collect or use a suitable dataset.
-Clean, prepare, and explore the data.
-Apply appropriate machine learning or deep learning techniques.
-Evaluate and interpret the results.
-Present and demonstrate the final solution professionally.
-
-## Project Requirements
-
-1. Problem Statement
-
-Trainees must explain:
-
-the problem being solved
-why the problem is important
-the objective of the project
-the expected outcome
-
-### 1. Dataset
-
-Trainees must:
-
-use a relevant dataset
-provide the dataset source
-describe the dataset size, features, and target variable if applicable
-
-Possible dataset sources:
-
-Kaggle
-UCI Machine Learning Repository
-government open data portals
-APIs
-self-collected or web-scraped data
-
-1. Data Cleaning and Preparation
-
-Trainees should:
-
-identify missing values
-handle duplicates
-correct data types
-treat outliers where necessary
-encode categorical variables if needed
-scale or normalize data if appropriate
-prepare training and testing datasets
-
-# 1. Exploratory Data Analysis (EDA)
-
-Trainees must include:
-
-- descriptive statistics
-- Visualizations
-- Trend or pattern analysis
-- Relationship analysis between variables
-- Important insights discovered from the data
-
-Examples of visualizations:
-
-- bar chart
-- histogram
-- boxplot
-- scatterplot
-- correlation heatmap
-- line chart
-
-1. Modeling / Analytical Approach
-
-Trainees must apply at least one suitable method.
-
-Traditional Machine Learning Options
-
-Linear Regression
-Logistic Regression
-Decision Tree
-Random Forest
-K-Nearest Neighbors
-Support Vector Machine
-Naive Bayes
-K-Means Clustering
-
-Deep Learning Options
-
-Trainees may also use deep learning where appropriate, such as:
-
-Artificial Neural Networks (ANN)
-Convolutional Neural Networks (CNN)
-Recurrent Neural Networks (RNN/LSTM)
-Transfer Learning models
-
-Suitable Deep Learning Use Cases
-
-image classification
-text classification
-sentiment analysis
-time series forecasting
-pattern recognition
-tabular prediction using neural networks
-
-Trainees must explain:
-
-why the chosen model was selected
-how the model works at a basic level
-why it is suitable for the problem
-
-1. Model Training and Testing
-
-Trainees should:
-
-split the data into training and testing sets
-train at least one model
-compare models where possible
-tune parameters if appropriate
-avoid data leakage
-
-For deep learning projects, trainees should also include:
-
-number of layers used
-activation functions
-loss function
-optimizer
-epochs
-batch size
-training and validation performance
-
-1. Evaluation
-
-Trainees must evaluate the performance of the model using suitable metrics.
-
-For Classification
-
-Accuracy
-Precision
-Recall
-F1-score
-Confusion Matrix
-
-For Regression
-
-MAE
-MSE
-RMSE
-R² Score
-
-For Clustering
-
-Silhouette Score
-Cluster interpretation
-
-For Deep Learning
-
-Trainees may also include:
-
-training loss
-validation loss
-training accuracy
-validation accuracy
-learning curves
-
-Trainees must interpret the results clearly, not just report the metric values.
-
-1. Conclusion and Recommendations
-
-Trainees should:
-
-summarize the project findings
-state whether the objective was achieved
-explain limitations of the project
-suggest future improvements
-
-1. Project Demo
-
-Trainees must prepare a simple demonstration of their project.
-
-The demo can be in one of the following forms:
-
-Streamlit app
-dashboard
-Jupyter Notebook walkthrough
-web app prototype
-slides with live prediction demo
-recorded screen demo if live demo is not possible
-
-Demo Requirements
-
-The demo should show:
-
-the purpose of the project
-how the user interacts with the system
-sample input and output
-prediction, classification, analysis result, or visualization
-explanation of the final outcome
-
-Example Demo Ideas
-
-house price prediction app
-image classifier demo
-customer churn prediction dashboard
-movie recommendation interface
-sentiment analysis app
-sales forecasting dashboard
-
-1. Final Deliverables
-
-Trainees must submit:
-
-Python notebook or script (pdf,ipynb/.py)
-Dataset or cleaned dataset
-Presentation slides
-Demo application or demo recording
-GitHub repository link if required
-
-Suggested Tools
-
-Trainees may use:
-
-Python
-Jupyter Notebook
-pandas
-NumPy
-matplotlib
-seaborn
-scikit-learn
-TensorFlow / Keras
-PyTorch
-Streamlit
-Plotly
-
-Notes for Trainees
-
-Deep learning is not compulsory unless suitable for the problem.
-Trainees should not use deep learning just for the sake of using it.
-The selected method must match the nature of the dataset and problem.
-The demo does not need to be highly advanced, but it must clearly show how the project works.
+# KKMNow Dashboard
+
+## Project Objective
+
+The KKMNow Dashboard aims to provide a user friendly overview and visualisation of public open source data from KKMNow that allows visualisation of trends in data provided by KKM as well as a rudimentary machine learning page allowing the user to predict likelihood of COVID-19 daily cases or deaths based on parameters.
+
+## Dataset Source
+
+The dataset source used at this project can be found at the [KKMNow Data Catalogue](https://data.moh.gov.my/data-catalogue).
+
+The following datasets are used within the project from KKMNow in csv format and are converted into pandas dataframes.
+
+- blood_donations.csv
+- blood_donations_state.csv
+- covid_cases.csv
+- covid_cases_age.csv
+- covid_deaths_linelist.csv
+- infant_immunisation.csv
+- pekab40_screenings_state.csv
+
+## Installation and Dependencies
+
+The following dependencies are required for the project. Use pip to install the following packages below in a virtual environment or system-wide. A requirements.txt can also be found within the repo for a list of all current requirements. Please keep in mind that Python 3.10.11 is required to run tensorflow.
+
+### Core Dependencies
+
+```
+- Numpy
+- Pandas
+- Seaborn
+- Matplotlib
+- Plotly 
+- Jupyterlab (for running model_creation.ipynb)
+- Tensorflow
+- Keras
+- Scikit-learn 1.7.2
+- XGBoost
+- Geopandas 1.13
+- Streamlit
+
+```
+
+### Dependency Tree Diagram
+
+```
+fqdn==1.5.1
+geopandas==1.1.3
+├── numpy [required: >=1.24, installed: 2.2.6]
+├── pyogrio [required: >=0.7.2, installed: 0.12.1]
+│   ├── certifi [required: Any, installed: 2026.2.25]
+│   ├── numpy [required: Any, installed: 2.2.6]
+│   └── packaging [required: Any, installed: 26.0]
+├── packaging [required: Any, installed: 26.0]
+├── pandas [required: >=2.0.0, installed: 2.3.3]
+│   ├── numpy [required: >=1.22.4, installed: 2.2.6]
+│   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   └── six [required: >=1.5, installed: 1.17.0]
+│   ├── pytz [required: >=2020.1, installed: 2026.1.post1]
+│   └── tzdata [required: >=2022.7, installed: 2026.1]
+├── pyproj [required: >=3.5.0, installed: 3.7.1]
+│   └── certifi [required: Any, installed: 2026.2.25]
+└── shapely [required: >=2.0.0, installed: 2.1.2]
+    └── numpy [required: >=1.21, installed: 2.2.6]
+isoduration==20.11.0
+└── arrow [required: >=0.15.0, installed: 1.4.0]
+    ├── python-dateutil [required: >=2.7.0, installed: 2.9.0.post0]
+    │   └── six [required: >=1.5, installed: 1.17.0]
+    └── tzdata [required: Any, installed: 2026.1]
+jsonpointer==3.1.1
+jupyterlab==4.5.6
+├── async-lru [required: >=1.0.0, installed: 2.3.0]
+│   └── typing_extensions [required: >=4.0.0, installed: 4.15.0]
+├── httpx [required: >=0.25.0,<1, installed: 0.28.1]
+│   ├── anyio [required: Any, installed: 4.13.0]
+│   │   ├── exceptiongroup [required: >=1.0.2, installed: 1.3.1]
+│   │   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│   │   ├── idna [required: >=2.8, installed: 3.11]
+│   │   └── typing_extensions [required: >=4.5, installed: 4.15.0]
+│   ├── certifi [required: Any, installed: 2026.2.25]
+│   ├── httpcore [required: ==1.*, installed: 1.0.9]
+│   │   ├── certifi [required: Any, installed: 2026.2.25]
+│   │   └── h11 [required: >=0.16, installed: 0.16.0]
+│   └── idna [required: Any, installed: 3.11]
+├── ipykernel [required: >=6.5.0,!=6.30.0, installed: 7.2.0]
+│   ├── comm [required: >=0.1.1, installed: 0.2.3]
+│   ├── debugpy [required: >=1.6.5, installed: 1.8.20]
+│   ├── ipython [required: >=7.23.1, installed: 8.39.0]
+│   │   ├── decorator [required: Any, installed: 5.2.1]
+│   │   ├── exceptiongroup [required: Any, installed: 1.3.1]
+│   │   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│   │   ├── jedi [required: >=0.16, installed: 0.19.2]
+│   │   │   └── parso [required: >=0.8.4,<0.9.0, installed: 0.8.6]
+│   │   ├── matplotlib-inline [required: Any, installed: 0.2.1]
+│   │   │   └── traitlets [required: Any, installed: 5.14.3]
+│   │   ├── pexpect [required: >4.3, installed: 4.9.0]
+│   │   │   └── ptyprocess [required: >=0.5, installed: 0.7.0]
+│   │   ├── prompt_toolkit [required: >=3.0.41,<3.1.0, installed: 3.0.52]
+│   │   │   └── wcwidth [required: Any, installed: 0.6.0]
+│   │   ├── Pygments [required: >=2.4.0, installed: 2.20.0]
+│   │   ├── stack-data [required: Any, installed: 0.6.3]
+│   │   │   ├── executing [required: >=1.2.0, installed: 2.2.1]
+│   │   │   ├── asttokens [required: >=2.1.0, installed: 3.0.1]
+│   │   │   └── pure_eval [required: Any, installed: 0.2.3]
+│   │   ├── traitlets [required: >=5.13.0, installed: 5.14.3]
+│   │   └── typing_extensions [required: >=4.6, installed: 4.15.0]
+│   ├── jupyter_client [required: >=8.8.0, installed: 8.8.0]
+│   │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│   │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│   │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   ├── jupyter_core [required: >=5.1,!=6.0.*, installed: 5.9.1]
+│   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   ├── matplotlib-inline [required: >=0.1, installed: 0.2.1]
+│   │   └── traitlets [required: Any, installed: 5.14.3]
+│   ├── nest-asyncio [required: >=1.4, installed: 1.6.0]
+│   ├── packaging [required: >=22, installed: 26.0]
+│   ├── psutil [required: >=5.7, installed: 7.2.2]
+│   ├── pyzmq [required: >=25, installed: 27.1.0]
+│   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│   └── traitlets [required: >=5.4.0, installed: 5.14.3]
+├── jupyter_core [required: Any, installed: 5.9.1]
+│   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   └── traitlets [required: >=5.3, installed: 5.14.3]
+├── jupyter-lsp [required: >=2.0.0, installed: 2.3.1]
+│   └── jupyter_server [required: >=1.1.2, installed: 2.17.0]
+│       ├── anyio [required: >=3.1.0, installed: 4.13.0]
+│       │   ├── exceptiongroup [required: >=1.0.2, installed: 1.3.1]
+│       │   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│       │   ├── idna [required: >=2.8, installed: 3.11]
+│       │   └── typing_extensions [required: >=4.5, installed: 4.15.0]
+│       ├── argon2-cffi [required: >=21.1, installed: 25.1.0]
+│       │   └── argon2-cffi-bindings [required: Any, installed: 25.1.0]
+│       │       └── cffi [required: >=1.0.1, installed: 2.0.0]
+│       │           └── pycparser [required: Any, installed: 3.0]
+│       ├── Jinja2 [required: >=3.0.3, installed: 3.1.6]
+│       │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│       ├── jupyter_client [required: >=7.4.4, installed: 8.8.0]
+│       │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│       │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│       │   │   └── six [required: >=1.5, installed: 1.17.0]
+│       │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│       │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│       │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       ├── jupyter-events [required: >=0.11.0, installed: 0.12.0]
+│       │   ├── jsonschema [required: >=4.18.0, installed: 4.26.0]
+│       │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   ├── packaging [required: Any, installed: 26.0]
+│       │   ├── python-json-logger [required: >=2.0.4, installed: 4.1.0]
+│       │   ├── PyYAML [required: >=5.3, installed: 6.0.3]
+│       │   ├── referencing [required: Any, installed: 0.37.0]
+│       │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   ├── rfc3339-validator [required: Any, installed: 0.1.4]
+│       │   │   └── six [required: Any, installed: 1.17.0]
+│       │   ├── rfc3986-validator [required: >=0.1.1, installed: 0.1.1]
+│       │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       ├── jupyter_server_terminals [required: >=0.4.4, installed: 0.5.4]
+│       │   └── terminado [required: >=0.8.3, installed: 0.18.1]
+│       │       ├── ptyprocess [required: Any, installed: 0.7.0]
+│       │       └── tornado [required: >=6.1.0, installed: 6.5.5]
+│       ├── nbconvert [required: >=6.4.4, installed: 7.17.1]
+│       │   ├── beautifulsoup4 [required: Any, installed: 4.14.3]
+│       │   │   ├── soupsieve [required: >=1.6.1, installed: 2.8.3]
+│       │   │   └── typing_extensions [required: >=4.0.0, installed: 4.15.0]
+│       │   ├── bleach [required: !=5.0.0, installed: 6.3.0]
+│       │   │   └── webencodings [required: Any, installed: 0.5.1]
+│       │   ├── defusedxml [required: Any, installed: 0.7.1]
+│       │   ├── Jinja2 [required: >=3.0, installed: 3.1.6]
+│       │   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│       │   ├── jupyter_core [required: >=4.7, installed: 5.9.1]
+│       │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   ├── jupyterlab_pygments [required: Any, installed: 0.3.0]
+│       │   ├── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│       │   ├── mistune [required: >=2.0.3,<4, installed: 3.2.0]
+│       │   │   └── typing_extensions [required: Any, installed: 4.15.0]
+│       │   ├── nbclient [required: >=0.5.0, installed: 0.10.4]
+│       │   │   ├── jupyter_client [required: >=6.1.12, installed: 8.8.0]
+│       │   │   │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│       │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│       │   │   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│       │   │   │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│       │   │   │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│       │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   ├── nbformat [required: >=5.1.3, installed: 5.10.4]
+│       │   │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│       │   │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│       │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       │   │   └── traitlets [required: >=5.4, installed: 5.14.3]
+│       │   ├── nbformat [required: >=5.7, installed: 5.10.4]
+│       │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│       │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│       │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       │   ├── packaging [required: Any, installed: 26.0]
+│       │   ├── pandocfilters [required: >=1.4.1, installed: 1.5.1]
+│       │   ├── Pygments [required: >=2.4.1, installed: 2.20.0]
+│       │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       ├── nbformat [required: >=5.3.0, installed: 5.10.4]
+│       │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│       │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│       │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       ├── overrides [required: >=5.0, installed: 7.7.0]
+│       ├── packaging [required: >=22.0, installed: 26.0]
+│       ├── prometheus_client [required: >=0.9, installed: 0.25.0]
+│       ├── pyzmq [required: >=24, installed: 27.1.0]
+│       ├── Send2Trash [required: >=1.8.2, installed: 2.1.0]
+│       ├── terminado [required: >=0.8.3, installed: 0.18.1]
+│       │   ├── ptyprocess [required: Any, installed: 0.7.0]
+│       │   └── tornado [required: >=6.1.0, installed: 6.5.5]
+│       ├── tornado [required: >=6.2.0, installed: 6.5.5]
+│       ├── traitlets [required: >=5.6.0, installed: 5.14.3]
+│       └── websocket-client [required: >=1.7, installed: 1.9.0]
+├── jupyter_server [required: >=2.4.0,<3, installed: 2.17.0]
+│   ├── anyio [required: >=3.1.0, installed: 4.13.0]
+│   │   ├── exceptiongroup [required: >=1.0.2, installed: 1.3.1]
+│   │   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│   │   ├── idna [required: >=2.8, installed: 3.11]
+│   │   └── typing_extensions [required: >=4.5, installed: 4.15.0]
+│   ├── argon2-cffi [required: >=21.1, installed: 25.1.0]
+│   │   └── argon2-cffi-bindings [required: Any, installed: 25.1.0]
+│   │       └── cffi [required: >=1.0.1, installed: 2.0.0]
+│   │           └── pycparser [required: Any, installed: 3.0]
+│   ├── Jinja2 [required: >=3.0.3, installed: 3.1.6]
+│   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   ├── jupyter_client [required: >=7.4.4, installed: 8.8.0]
+│   │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│   │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│   │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   ├── jupyter-events [required: >=0.11.0, installed: 0.12.0]
+│   │   ├── jsonschema [required: >=4.18.0, installed: 4.26.0]
+│   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   ├── packaging [required: Any, installed: 26.0]
+│   │   ├── python-json-logger [required: >=2.0.4, installed: 4.1.0]
+│   │   ├── PyYAML [required: >=5.3, installed: 6.0.3]
+│   │   ├── referencing [required: Any, installed: 0.37.0]
+│   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   ├── rfc3339-validator [required: Any, installed: 0.1.4]
+│   │   │   └── six [required: Any, installed: 1.17.0]
+│   │   ├── rfc3986-validator [required: >=0.1.1, installed: 0.1.1]
+│   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   ├── jupyter_server_terminals [required: >=0.4.4, installed: 0.5.4]
+│   │   └── terminado [required: >=0.8.3, installed: 0.18.1]
+│   │       ├── ptyprocess [required: Any, installed: 0.7.0]
+│   │       └── tornado [required: >=6.1.0, installed: 6.5.5]
+│   ├── nbconvert [required: >=6.4.4, installed: 7.17.1]
+│   │   ├── beautifulsoup4 [required: Any, installed: 4.14.3]
+│   │   │   ├── soupsieve [required: >=1.6.1, installed: 2.8.3]
+│   │   │   └── typing_extensions [required: >=4.0.0, installed: 4.15.0]
+│   │   ├── bleach [required: !=5.0.0, installed: 6.3.0]
+│   │   │   └── webencodings [required: Any, installed: 0.5.1]
+│   │   ├── defusedxml [required: Any, installed: 0.7.1]
+│   │   ├── Jinja2 [required: >=3.0, installed: 3.1.6]
+│   │   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   │   ├── jupyter_core [required: >=4.7, installed: 5.9.1]
+│   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   ├── jupyterlab_pygments [required: Any, installed: 0.3.0]
+│   │   ├── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   │   ├── mistune [required: >=2.0.3,<4, installed: 3.2.0]
+│   │   │   └── typing_extensions [required: Any, installed: 4.15.0]
+│   │   ├── nbclient [required: >=0.5.0, installed: 0.10.4]
+│   │   │   ├── jupyter_client [required: >=6.1.12, installed: 8.8.0]
+│   │   │   │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│   │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   │   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│   │   │   │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│   │   │   │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   ├── nbformat [required: >=5.1.3, installed: 5.10.4]
+│   │   │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│   │   │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   │   │   └── traitlets [required: >=5.4, installed: 5.14.3]
+│   │   ├── nbformat [required: >=5.7, installed: 5.10.4]
+│   │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│   │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   │   ├── packaging [required: Any, installed: 26.0]
+│   │   ├── pandocfilters [required: >=1.4.1, installed: 1.5.1]
+│   │   ├── Pygments [required: >=2.4.1, installed: 2.20.0]
+│   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   ├── nbformat [required: >=5.3.0, installed: 5.10.4]
+│   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   ├── overrides [required: >=5.0, installed: 7.7.0]
+│   ├── packaging [required: >=22.0, installed: 26.0]
+│   ├── prometheus_client [required: >=0.9, installed: 0.25.0]
+│   ├── pyzmq [required: >=24, installed: 27.1.0]
+│   ├── Send2Trash [required: >=1.8.2, installed: 2.1.0]
+│   ├── terminado [required: >=0.8.3, installed: 0.18.1]
+│   │   ├── ptyprocess [required: Any, installed: 0.7.0]
+│   │   └── tornado [required: >=6.1.0, installed: 6.5.5]
+│   ├── tornado [required: >=6.2.0, installed: 6.5.5]
+│   ├── traitlets [required: >=5.6.0, installed: 5.14.3]
+│   └── websocket-client [required: >=1.7, installed: 1.9.0]
+├── jupyterlab_server [required: >=2.28.0,<3, installed: 2.28.0]
+│   ├── babel [required: >=2.10, installed: 2.18.0]
+│   ├── Jinja2 [required: >=3.0.3, installed: 3.1.6]
+│   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   ├── json5 [required: >=0.9.0, installed: 0.14.0]
+│   ├── jsonschema [required: >=4.18.0, installed: 4.26.0]
+│   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   ├── jupyter_server [required: >=1.21,<3, installed: 2.17.0]
+│   │   ├── anyio [required: >=3.1.0, installed: 4.13.0]
+│   │   │   ├── exceptiongroup [required: >=1.0.2, installed: 1.3.1]
+│   │   │   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│   │   │   ├── idna [required: >=2.8, installed: 3.11]
+│   │   │   └── typing_extensions [required: >=4.5, installed: 4.15.0]
+│   │   ├── argon2-cffi [required: >=21.1, installed: 25.1.0]
+│   │   │   └── argon2-cffi-bindings [required: Any, installed: 25.1.0]
+│   │   │       └── cffi [required: >=1.0.1, installed: 2.0.0]
+│   │   │           └── pycparser [required: Any, installed: 3.0]
+│   │   ├── Jinja2 [required: >=3.0.3, installed: 3.1.6]
+│   │   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   │   ├── jupyter_client [required: >=7.4.4, installed: 8.8.0]
+│   │   │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│   │   │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│   │   │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   ├── jupyter-events [required: >=0.11.0, installed: 0.12.0]
+│   │   │   ├── jsonschema [required: >=4.18.0, installed: 4.26.0]
+│   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   │   ├── packaging [required: Any, installed: 26.0]
+│   │   │   ├── python-json-logger [required: >=2.0.4, installed: 4.1.0]
+│   │   │   ├── PyYAML [required: >=5.3, installed: 6.0.3]
+│   │   │   ├── referencing [required: Any, installed: 0.37.0]
+│   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   ├── rfc3339-validator [required: Any, installed: 0.1.4]
+│   │   │   │   └── six [required: Any, installed: 1.17.0]
+│   │   │   ├── rfc3986-validator [required: >=0.1.1, installed: 0.1.1]
+│   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   ├── jupyter_server_terminals [required: >=0.4.4, installed: 0.5.4]
+│   │   │   └── terminado [required: >=0.8.3, installed: 0.18.1]
+│   │   │       ├── ptyprocess [required: Any, installed: 0.7.0]
+│   │   │       └── tornado [required: >=6.1.0, installed: 6.5.5]
+│   │   ├── nbconvert [required: >=6.4.4, installed: 7.17.1]
+│   │   │   ├── beautifulsoup4 [required: Any, installed: 4.14.3]
+│   │   │   │   ├── soupsieve [required: >=1.6.1, installed: 2.8.3]
+│   │   │   │   └── typing_extensions [required: >=4.0.0, installed: 4.15.0]
+│   │   │   ├── bleach [required: !=5.0.0, installed: 6.3.0]
+│   │   │   │   └── webencodings [required: Any, installed: 0.5.1]
+│   │   │   ├── defusedxml [required: Any, installed: 0.7.1]
+│   │   │   ├── Jinja2 [required: >=3.0, installed: 3.1.6]
+│   │   │   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   │   │   ├── jupyter_core [required: >=4.7, installed: 5.9.1]
+│   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   ├── jupyterlab_pygments [required: Any, installed: 0.3.0]
+│   │   │   ├── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   │   │   ├── mistune [required: >=2.0.3,<4, installed: 3.2.0]
+│   │   │   │   └── typing_extensions [required: Any, installed: 4.15.0]
+│   │   │   ├── nbclient [required: >=0.5.0, installed: 0.10.4]
+│   │   │   │   ├── jupyter_client [required: >=6.1.12, installed: 8.8.0]
+│   │   │   │   │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│   │   │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   │   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   │   │   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│   │   │   │   │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│   │   │   │   │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│   │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   │   ├── nbformat [required: >=5.1.3, installed: 5.10.4]
+│   │   │   │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│   │   │   │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│   │   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   │   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   │   │   │   └── traitlets [required: >=5.4, installed: 5.14.3]
+│   │   │   ├── nbformat [required: >=5.7, installed: 5.10.4]
+│   │   │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│   │   │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   │   │   ├── packaging [required: Any, installed: 26.0]
+│   │   │   ├── pandocfilters [required: >=1.4.1, installed: 1.5.1]
+│   │   │   ├── Pygments [required: >=2.4.1, installed: 2.20.0]
+│   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   │   ├── nbformat [required: >=5.3.0, installed: 5.10.4]
+│   │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│   │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│   │   ├── overrides [required: >=5.0, installed: 7.7.0]
+│   │   ├── packaging [required: >=22.0, installed: 26.0]
+│   │   ├── prometheus_client [required: >=0.9, installed: 0.25.0]
+│   │   ├── pyzmq [required: >=24, installed: 27.1.0]
+│   │   ├── Send2Trash [required: >=1.8.2, installed: 2.1.0]
+│   │   ├── terminado [required: >=0.8.3, installed: 0.18.1]
+│   │   │   ├── ptyprocess [required: Any, installed: 0.7.0]
+│   │   │   └── tornado [required: >=6.1.0, installed: 6.5.5]
+│   │   ├── tornado [required: >=6.2.0, installed: 6.5.5]
+│   │   ├── traitlets [required: >=5.6.0, installed: 5.14.3]
+│   │   └── websocket-client [required: >=1.7, installed: 1.9.0]
+│   ├── packaging [required: >=21.3, installed: 26.0]
+│   └── requests [required: >=2.31, installed: 2.33.1]
+│       ├── charset-normalizer [required: >=2,<4, installed: 3.4.7]
+│       ├── idna [required: >=2.5,<4, installed: 3.11]
+│       ├── urllib3 [required: >=1.26,<3, installed: 2.6.3]
+│       └── certifi [required: >=2023.5.7, installed: 2026.2.25]
+├── notebook_shim [required: >=0.2, installed: 0.2.4]
+│   └── jupyter_server [required: >=1.8,<3, installed: 2.17.0]
+│       ├── anyio [required: >=3.1.0, installed: 4.13.0]
+│       │   ├── exceptiongroup [required: >=1.0.2, installed: 1.3.1]
+│       │   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│       │   ├── idna [required: >=2.8, installed: 3.11]
+│       │   └── typing_extensions [required: >=4.5, installed: 4.15.0]
+│       ├── argon2-cffi [required: >=21.1, installed: 25.1.0]
+│       │   └── argon2-cffi-bindings [required: Any, installed: 25.1.0]
+│       │       └── cffi [required: >=1.0.1, installed: 2.0.0]
+│       │           └── pycparser [required: Any, installed: 3.0]
+│       ├── Jinja2 [required: >=3.0.3, installed: 3.1.6]
+│       │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│       ├── jupyter_client [required: >=7.4.4, installed: 8.8.0]
+│       │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│       │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│       │   │   └── six [required: >=1.5, installed: 1.17.0]
+│       │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│       │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│       │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       ├── jupyter-events [required: >=0.11.0, installed: 0.12.0]
+│       │   ├── jsonschema [required: >=4.18.0, installed: 4.26.0]
+│       │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   ├── packaging [required: Any, installed: 26.0]
+│       │   ├── python-json-logger [required: >=2.0.4, installed: 4.1.0]
+│       │   ├── PyYAML [required: >=5.3, installed: 6.0.3]
+│       │   ├── referencing [required: Any, installed: 0.37.0]
+│       │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   ├── rfc3339-validator [required: Any, installed: 0.1.4]
+│       │   │   └── six [required: Any, installed: 1.17.0]
+│       │   ├── rfc3986-validator [required: >=0.1.1, installed: 0.1.1]
+│       │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       ├── jupyter_server_terminals [required: >=0.4.4, installed: 0.5.4]
+│       │   └── terminado [required: >=0.8.3, installed: 0.18.1]
+│       │       ├── ptyprocess [required: Any, installed: 0.7.0]
+│       │       └── tornado [required: >=6.1.0, installed: 6.5.5]
+│       ├── nbconvert [required: >=6.4.4, installed: 7.17.1]
+│       │   ├── beautifulsoup4 [required: Any, installed: 4.14.3]
+│       │   │   ├── soupsieve [required: >=1.6.1, installed: 2.8.3]
+│       │   │   └── typing_extensions [required: >=4.0.0, installed: 4.15.0]
+│       │   ├── bleach [required: !=5.0.0, installed: 6.3.0]
+│       │   │   └── webencodings [required: Any, installed: 0.5.1]
+│       │   ├── defusedxml [required: Any, installed: 0.7.1]
+│       │   ├── Jinja2 [required: >=3.0, installed: 3.1.6]
+│       │   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│       │   ├── jupyter_core [required: >=4.7, installed: 5.9.1]
+│       │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   ├── jupyterlab_pygments [required: Any, installed: 0.3.0]
+│       │   ├── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│       │   ├── mistune [required: >=2.0.3,<4, installed: 3.2.0]
+│       │   │   └── typing_extensions [required: Any, installed: 4.15.0]
+│       │   ├── nbclient [required: >=0.5.0, installed: 0.10.4]
+│       │   │   ├── jupyter_client [required: >=6.1.12, installed: 8.8.0]
+│       │   │   │   ├── jupyter_core [required: >=5.1, installed: 5.9.1]
+│       │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│       │   │   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│       │   │   │   ├── pyzmq [required: >=25.0, installed: 27.1.0]
+│       │   │   │   ├── tornado [required: >=6.4.1, installed: 6.5.5]
+│       │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   ├── nbformat [required: >=5.1.3, installed: 5.10.4]
+│       │   │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│       │   │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│       │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       │   │   └── traitlets [required: >=5.4, installed: 5.14.3]
+│       │   ├── nbformat [required: >=5.7, installed: 5.10.4]
+│       │   │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│       │   │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│       │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       │   ├── packaging [required: Any, installed: 26.0]
+│       │   ├── pandocfilters [required: >=1.4.1, installed: 1.5.1]
+│       │   ├── Pygments [required: >=2.4.1, installed: 2.20.0]
+│       │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       ├── nbformat [required: >=5.3.0, installed: 5.10.4]
+│       │   ├── fastjsonschema [required: >=2.15, installed: 2.21.2]
+│       │   ├── jsonschema [required: >=2.6, installed: 4.26.0]
+│       │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│       │   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│       │   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│       │   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│       │   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│       │   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│       │   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│       │   ├── jupyter_core [required: >=4.12,!=5.0.*, installed: 5.9.1]
+│       │   │   ├── platformdirs [required: >=2.5, installed: 4.9.6]
+│       │   │   └── traitlets [required: >=5.3, installed: 5.14.3]
+│       │   └── traitlets [required: >=5.1, installed: 5.14.3]
+│       ├── overrides [required: >=5.0, installed: 7.7.0]
+│       ├── packaging [required: >=22.0, installed: 26.0]
+│       ├── prometheus_client [required: >=0.9, installed: 0.25.0]
+│       ├── pyzmq [required: >=24, installed: 27.1.0]
+│       ├── Send2Trash [required: >=1.8.2, installed: 2.1.0]
+│       ├── terminado [required: >=0.8.3, installed: 0.18.1]
+│       │   ├── ptyprocess [required: Any, installed: 0.7.0]
+│       │   └── tornado [required: >=6.1.0, installed: 6.5.5]
+│       ├── tornado [required: >=6.2.0, installed: 6.5.5]
+│       ├── traitlets [required: >=5.6.0, installed: 5.14.3]
+│       └── websocket-client [required: >=1.7, installed: 1.9.0]
+├── packaging [required: Any, installed: 26.0]
+├── setuptools [required: >=41.1.0, installed: 65.5.0]
+├── tomli [required: >=1.2.2, installed: 2.4.1]
+├── tornado [required: >=6.2.0, installed: 6.5.5]
+└── traitlets [required: Any, installed: 5.14.3]
+kagglehub==1.0.0
+├── kagglesdk [required: >=0.1.14,<1.0, installed: 0.1.18]
+│   ├── protobuf [required: Any, installed: 7.34.1]
+│   └── requests [required: Any, installed: 2.33.1]
+│       ├── charset-normalizer [required: >=2,<4, installed: 3.4.7]
+│       ├── idna [required: >=2.5,<4, installed: 3.11]
+│       ├── urllib3 [required: >=1.26,<3, installed: 2.6.3]
+│       └── certifi [required: >=2023.5.7, installed: 2026.2.25]
+├── packaging [required: Any, installed: 26.0]
+├── PyYAML [required: Any, installed: 6.0.3]
+├── requests [required: Any, installed: 2.33.1]
+│   ├── charset-normalizer [required: >=2,<4, installed: 3.4.7]
+│   ├── idna [required: >=2.5,<4, installed: 3.11]
+│   ├── urllib3 [required: >=1.26,<3, installed: 2.6.3]
+│   └── certifi [required: >=2023.5.7, installed: 2026.2.25]
+└── tqdm [required: Any, installed: 4.67.3]
+keras-tuner==1.4.8
+├── keras [required: Any, installed: 3.12.1]
+│   ├── absl-py [required: Any, installed: 2.4.0]
+│   ├── numpy [required: Any, installed: 2.2.6]
+│   ├── rich [required: Any, installed: 14.3.3]
+│   │   ├── markdown-it-py [required: >=2.2.0, installed: 4.0.0]
+│   │   │   └── mdurl [required: ~=0.1, installed: 0.1.2]
+│   │   └── Pygments [required: >=2.13.0,<3.0.0, installed: 2.20.0]
+│   ├── namex [required: Any, installed: 0.1.0]
+│   ├── h5py [required: Any, installed: 3.14.0]
+│   │   └── numpy [required: >=1.19.3, installed: 2.2.6]
+│   ├── optree [required: Any, installed: 0.19.0]
+│   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│   ├── ml_dtypes [required: Any, installed: 0.5.4]
+│   │   ├── numpy [required: >=1.21, installed: 2.2.6]
+│   │   └── numpy [required: >=1.21.2, installed: 2.2.6]
+│   └── packaging [required: Any, installed: 26.0]
+├── packaging [required: Any, installed: 26.0]
+├── requests [required: Any, installed: 2.33.1]
+│   ├── charset-normalizer [required: >=2,<4, installed: 3.4.7]
+│   ├── idna [required: >=2.5,<4, installed: 3.11]
+│   ├── urllib3 [required: >=1.26,<3, installed: 2.6.3]
+│   └── certifi [required: >=2023.5.7, installed: 2026.2.25]
+├── kt-legacy [required: Any, installed: 1.0.5]
+├── grpcio [required: Any, installed: 1.80.0]
+│   └── typing_extensions [required: ~=4.12, installed: 4.15.0]
+└── protobuf [required: Any, installed: 7.34.1]
+pip==23.0.1
+pipdeptree==2.35.1
+└── packaging [required: >=26, installed: 26.0]
+playwright==1.58.0
+├── pyee [required: >=13,<14, installed: 13.0.1]
+│   └── typing_extensions [required: Any, installed: 4.15.0]
+└── greenlet [required: >=3.1.1,<4.0.0, installed: 3.4.0]
+plotly==6.7.0
+├── narwhals [required: >=1.15.1, installed: 2.19.0]
+└── packaging [required: Any, installed: 26.0]
+prophet==1.3.0
+├── cmdstanpy [required: >=1.0.4, installed: 1.3.0]
+│   ├── pandas [required: Any, installed: 2.3.3]
+│   │   ├── numpy [required: >=1.22.4, installed: 2.2.6]
+│   │   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   │   └── six [required: >=1.5, installed: 1.17.0]
+│   │   ├── pytz [required: >=2020.1, installed: 2026.1.post1]
+│   │   └── tzdata [required: >=2022.7, installed: 2026.1]
+│   ├── numpy [required: >=1.21, installed: 2.2.6]
+│   ├── tqdm [required: Any, installed: 4.67.3]
+│   └── stanio [required: >=0.4.0,<2.0.0, installed: 0.5.1]
+│       └── numpy [required: Any, installed: 2.2.6]
+├── numpy [required: >=1.15.4, installed: 2.2.6]
+├── matplotlib [required: >=2.0.0, installed: 3.10.8]
+│   ├── contourpy [required: >=1.0.1, installed: 1.3.2]
+│   │   └── numpy [required: >=1.23, installed: 2.2.6]
+│   ├── cycler [required: >=0.10, installed: 0.12.1]
+│   ├── fonttools [required: >=4.22.0, installed: 4.62.1]
+│   ├── kiwisolver [required: >=1.3.1, installed: 1.5.0]
+│   ├── numpy [required: >=1.23, installed: 2.2.6]
+│   ├── packaging [required: >=20.0, installed: 26.0]
+│   ├── pillow [required: >=8, installed: 12.2.0]
+│   ├── pyparsing [required: >=3, installed: 3.3.2]
+│   └── python-dateutil [required: >=2.7, installed: 2.9.0.post0]
+│       └── six [required: >=1.5, installed: 1.17.0]
+├── pandas [required: >=1.0.4, installed: 2.3.3]
+│   ├── numpy [required: >=1.22.4, installed: 2.2.6]
+│   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   └── six [required: >=1.5, installed: 1.17.0]
+│   ├── pytz [required: >=2020.1, installed: 2026.1.post1]
+│   └── tzdata [required: >=2022.7, installed: 2026.1]
+├── holidays [required: >=0.25,<1, installed: 0.95]
+│   └── python-dateutil [required: >=2.9.0.post0,<3, installed: 2.9.0.post0]
+│       └── six [required: >=1.5, installed: 1.17.0]
+├── tqdm [required: >=4.36.1, installed: 4.67.3]
+└── importlib_resources [required: Any, installed: 7.1.0]
+pyright==1.1.408
+├── nodeenv [required: >=1.6.0, installed: 1.10.0]
+└── typing_extensions [required: >=4.1, installed: 4.15.0]
+rfc3987-syntax==1.1.0
+└── lark [required: >=1.2.2, installed: 1.3.1]
+scikit-image==0.25.2
+├── numpy [required: >=1.24, installed: 2.2.6]
+├── scipy [required: >=1.11.4, installed: 1.15.3]
+│   └── numpy [required: >=1.23.5,<2.5, installed: 2.2.6]
+├── networkx [required: >=3.0, installed: 3.4.2]
+├── pillow [required: >=10.1, installed: 12.2.0]
+├── ImageIO [required: >=2.33,!=2.35.0, installed: 2.37.3]
+│   ├── numpy [required: Any, installed: 2.2.6]
+│   └── pillow [required: >=8.3.2, installed: 12.2.0]
+├── tifffile [required: >=2022.8.12, installed: 2025.5.10]
+│   └── numpy [required: Any, installed: 2.2.6]
+├── packaging [required: >=21, installed: 26.0]
+└── lazy-loader [required: >=0.4, installed: 0.5]
+    └── packaging [required: Any, installed: 26.0]
+scikit-learn==1.7.2
+├── numpy [required: >=1.22.0, installed: 2.2.6]
+├── scipy [required: >=1.8.0, installed: 1.15.3]
+│   └── numpy [required: >=1.23.5,<2.5, installed: 2.2.6]
+├── joblib [required: >=1.2.0, installed: 1.5.3]
+└── threadpoolctl [required: >=3.1.0, installed: 3.6.0]
+seaborn==0.13.2
+├── numpy [required: >=1.20,!=1.24.0, installed: 2.2.6]
+├── pandas [required: >=1.2, installed: 2.3.3]
+│   ├── numpy [required: >=1.22.4, installed: 2.2.6]
+│   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   └── six [required: >=1.5, installed: 1.17.0]
+│   ├── pytz [required: >=2020.1, installed: 2026.1.post1]
+│   └── tzdata [required: >=2022.7, installed: 2026.1]
+└── matplotlib [required: >=3.4,!=3.6.1, installed: 3.10.8]
+    ├── contourpy [required: >=1.0.1, installed: 1.3.2]
+    │   └── numpy [required: >=1.23, installed: 2.2.6]
+    ├── cycler [required: >=0.10, installed: 0.12.1]
+    ├── fonttools [required: >=4.22.0, installed: 4.62.1]
+    ├── kiwisolver [required: >=1.3.1, installed: 1.5.0]
+    ├── numpy [required: >=1.23, installed: 2.2.6]
+    ├── packaging [required: >=20.0, installed: 26.0]
+    ├── pillow [required: >=8, installed: 12.2.0]
+    ├── pyparsing [required: >=3, installed: 3.3.2]
+    └── python-dateutil [required: >=2.7, installed: 2.9.0.post0]
+        └── six [required: >=1.5, installed: 1.17.0]
+streamlit==1.56.0
+├── altair [required: >=4.0,<7,!=5.4.1,!=5.4.0, installed: 6.0.0]
+│   ├── Jinja2 [required: Any, installed: 3.1.6]
+│   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   ├── jsonschema [required: >=3.0, installed: 4.26.0]
+│   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   ├── jsonschema-specifications [required: >=2023.03.6, installed: 2025.9.1]
+│   │   │   └── referencing [required: >=0.31.0, installed: 0.37.0]
+│   │   │       ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │       ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │       └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   ├── referencing [required: >=0.28.4, installed: 0.37.0]
+│   │   │   ├── attrs [required: >=22.2.0, installed: 26.1.0]
+│   │   │   ├── rpds-py [required: >=0.7.0, installed: 0.30.0]
+│   │   │   └── typing_extensions [required: >=4.4.0, installed: 4.15.0]
+│   │   └── rpds-py [required: >=0.25.0, installed: 0.30.0]
+│   ├── narwhals [required: >=1.27.1, installed: 2.19.0]
+│   ├── packaging [required: Any, installed: 26.0]
+│   └── typing_extensions [required: >=4.12.0, installed: 4.15.0]
+├── blinker [required: >=1.5.0,<2, installed: 1.9.0]
+├── cachetools [required: >=5.5,<8, installed: 7.0.5]
+├── click [required: >=7.0,<9, installed: 8.3.2]
+├── GitPython [required: >=3.0.7,<4,!=3.1.19, installed: 3.1.46]
+│   └── gitdb [required: >=4.0.1,<5, installed: 4.0.12]
+│       └── smmap [required: >=3.0.1,<6, installed: 5.0.3]
+├── numpy [required: >=1.23,<3, installed: 2.2.6]
+├── packaging [required: >=20, installed: 26.0]
+├── pandas [required: >=1.4.0,<4, installed: 2.3.3]
+│   ├── numpy [required: >=1.22.4, installed: 2.2.6]
+│   ├── python-dateutil [required: >=2.8.2, installed: 2.9.0.post0]
+│   │   └── six [required: >=1.5, installed: 1.17.0]
+│   ├── pytz [required: >=2020.1, installed: 2026.1.post1]
+│   └── tzdata [required: >=2022.7, installed: 2026.1]
+├── pillow [required: >=7.1.0,<13, installed: 12.2.0]
+├── pydeck [required: >=0.8.0b4,<1, installed: 0.9.1]
+│   ├── Jinja2 [required: >=2.10.1, installed: 3.1.6]
+│   │   └── MarkupSafe [required: >=2.0, installed: 3.0.3]
+│   └── numpy [required: >=1.16.4, installed: 2.2.6]
+├── protobuf [required: >=3.20,<8, installed: 7.34.1]
+├── pyarrow [required: >=7.0, installed: 23.0.1]
+├── requests [required: >=2.27,<3, installed: 2.33.1]
+│   ├── charset-normalizer [required: >=2,<4, installed: 3.4.7]
+│   ├── idna [required: >=2.5,<4, installed: 3.11]
+│   ├── urllib3 [required: >=1.26,<3, installed: 2.6.3]
+│   └── certifi [required: >=2023.5.7, installed: 2026.2.25]
+├── tenacity [required: >=8.1.0,<10, installed: 9.1.4]
+├── toml [required: >=0.10.1,<2, installed: 0.10.2]
+├── tornado [required: >=6.0.3,<7,!=6.5.0, installed: 6.5.5]
+├── typing_extensions [required: >=4.10.0,<5, installed: 4.15.0]
+└── watchdog [required: >=2.1.5,<7, installed: 6.0.0]
+tensorboard==2.20.0
+├── absl-py [required: >=0.4, installed: 2.4.0]
+├── grpcio [required: >=1.48.2, installed: 1.80.0]
+│   └── typing_extensions [required: ~=4.12, installed: 4.15.0]
+├── Markdown [required: >=2.6.8, installed: 3.10.2]
+├── numpy [required: >=1.12.0, installed: 2.2.6]
+├── packaging [required: Any, installed: 26.0]
+├── pillow [required: Any, installed: 12.2.0]
+├── protobuf [required: >=3.19.6,!=4.24.0, installed: 7.34.1]
+├── setuptools [required: >=41.0.0, installed: 65.5.0]
+├── tensorboard-data-server [required: >=0.7.0,<0.8.0, installed: 0.7.2]
+└── Werkzeug [required: >=1.0.1, installed: 3.1.8]
+    └── MarkupSafe [required: >=2.1.1, installed: 3.0.3]
+tensorflow==2.21.0
+├── absl-py [required: >=1.0.0, installed: 2.4.0]
+├── astunparse [required: >=1.6.0, installed: 1.6.3]
+│   ├── wheel [required: >=0.23.0,<1.0, installed: 0.46.3]
+│   │   └── packaging [required: >=24.0, installed: 26.0]
+│   └── six [required: >=1.6.1,<2.0, installed: 1.17.0]
+├── flatbuffers [required: >=25.9.23, installed: 25.12.19]
+├── gast [required: >=0.2.1,!=0.5.2,!=0.5.1,!=0.5.0, installed: 0.7.0]
+├── google-pasta [required: >=0.1.1, installed: 0.2.0]
+│   └── six [required: Any, installed: 1.17.0]
+├── libclang [required: >=13.0.0, installed: 18.1.1]
+├── opt_einsum [required: >=2.3.2, installed: 3.4.0]
+├── packaging [required: Any, installed: 26.0]
+├── protobuf [required: >=6.31.1,<8.0.0, installed: 7.34.1]
+├── requests [required: >=2.21.0,<3, installed: 2.33.1]
+│   ├── charset-normalizer [required: >=2,<4, installed: 3.4.7]
+│   ├── idna [required: >=2.5,<4, installed: 3.11]
+│   ├── urllib3 [required: >=1.26,<3, installed: 2.6.3]
+│   └── certifi [required: >=2023.5.7, installed: 2026.2.25]
+├── setuptools [required: Any, installed: 65.5.0]
+├── six [required: >=1.12.0, installed: 1.17.0]
+├── termcolor [required: >=1.1.0, installed: 3.3.0]
+├── typing_extensions [required: >=3.6.6, installed: 4.15.0]
+├── wrapt [required: >=1.11.0, installed: 2.1.2]
+├── grpcio [required: >=1.24.3,<2.0, installed: 1.80.0]
+│   └── typing_extensions [required: ~=4.12, installed: 4.15.0]
+├── keras [required: >=3.12.0, installed: 3.12.1]
+│   ├── absl-py [required: Any, installed: 2.4.0]
+│   ├── numpy [required: Any, installed: 2.2.6]
+│   ├── rich [required: Any, installed: 14.3.3]
+│   │   ├── markdown-it-py [required: >=2.2.0, installed: 4.0.0]
+│   │   │   └── mdurl [required: ~=0.1, installed: 0.1.2]
+│   │   └── Pygments [required: >=2.13.0,<3.0.0, installed: 2.20.0]
+│   ├── namex [required: Any, installed: 0.1.0]
+│   ├── h5py [required: Any, installed: 3.14.0]
+│   │   └── numpy [required: >=1.19.3, installed: 2.2.6]
+│   ├── optree [required: Any, installed: 0.19.0]
+│   │   └── typing_extensions [required: >=4.6.0, installed: 4.15.0]
+│   ├── ml_dtypes [required: Any, installed: 0.5.4]
+│   │   ├── numpy [required: >=1.21, installed: 2.2.6]
+│   │   └── numpy [required: >=1.21.2, installed: 2.2.6]
+│   └── packaging [required: Any, installed: 26.0]
+├── numpy [required: >=1.26.0, installed: 2.2.6]
+├── h5py [required: >=3.11.0,<3.15.0, installed: 3.14.0]
+│   └── numpy [required: >=1.19.3, installed: 2.2.6]
+└── ml_dtypes [required: >=0.5.1,<1.0.0, installed: 0.5.4]
+    ├── numpy [required: >=1.21, installed: 2.2.6]
+    └── numpy [required: >=1.21.2, installed: 2.2.6]
+tinycss2==1.4.0
+└── webencodings [required: >=0.4, installed: 0.5.1]
+uri-template==1.3.0
+webcolors==25.10.0
+xgboost==3.2.0
+├── numpy [required: Any, installed: 2.2.6]
+├── nvidia-nccl-cu12 [required: Any, installed: 2.30.4]
+└── scipy [required: Any, installed: 1.15.3]
+    └── numpy [required: >=1.23.5,<2.5, installed: 2.2.6]
+```
+
+## Usage
+
+### Running dashboard
+
+- The following command should be run below in the root of ../data_sci_project/project_dashboard/ and the following command should be run.
+
+```python
+streamlit run Home.py
+```
+
+### Dashboard
+
+- The dashboard is currently composed of 4 pages.
+    1.data_vis - A basic dashboard that allows the user to select fields from each dataset and visualise them in either a bar graph, scatter graph, line graph, box plot or violin plot.
+    2.region_map - A geopandas map viewer that allows the user to view aggregated geospatial KKMNow statistics across Malaysia.
+    3.machine_learning - A scikit-learn based prediction model that allows
+    4.deep_learning - A keras deep learning model that allows prediction of both daily cases per day or the likelihood of death from COVID-19 during the COVID-19 period.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)

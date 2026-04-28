@@ -1,7 +1,7 @@
 
 # Data Science Capstone Project Requirements
 
-Overview
+## Overview
 
 The capstone project is a final project where trainees apply data science knowledge, analytical thinking, and technical skills to solve a real-world problem using data.
 
@@ -9,13 +9,13 @@ Trainees are expected to complete the full workflow from problem definition to f
 
 The project may involve:
 
-data analysis
-machine learning
-deep learning
-dashboard development
-application deployment or prototype demo
+- data analysis
+- machine learning
+- deep learning
+- dashboard development
+- application deployment or prototype demo
 
-Project Objectives
+## Project Objectives
 
 Trainees must:
 
@@ -26,7 +26,7 @@ Apply appropriate machine learning or deep learning techniques.
 Evaluate and interpret the results.
 Present and demonstrate the final solution professionally.
 
-Project Requirements
+## Project Requirements
 
 1. Problem Statement
 
@@ -37,7 +37,7 @@ why the problem is important
 the objective of the project
 the expected outcome
 
-1. Dataset
+### 1. Dataset
 
 Trainees must:
 
@@ -65,24 +65,24 @@ encode categorical variables if needed
 scale or normalize data if appropriate
 prepare training and testing datasets
 
-1. Exploratory Data Analysis (EDA)
+# 1. Exploratory Data Analysis (EDA)
 
 Trainees must include:
 
-descriptive statistics
-visualizations
-trend or pattern analysis
-relationship analysis between variables
-important insights discovered from the data
+- descriptive statistics
+- Visualizations
+- Trend or pattern analysis
+- Relationship analysis between variables
+- Important insights discovered from the data
 
 Examples of visualizations:
 
-bar chart
-histogram
-boxplot
-scatterplot
-correlation heatmap
-line chart
+- bar chart
+- histogram
+- boxplot
+- scatterplot
+- correlation heatmap
+- line chart
 
 1. Modeling / Analytical Approach
 
